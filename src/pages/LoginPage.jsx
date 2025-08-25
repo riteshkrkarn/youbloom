@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { validatePhone } from "../utility/utilities";
 import Navbar from "../components/Navbar.jsx";
+import { useSelector } from "react-redux";
 
 const LoginPage = () => {
   const [phone, setPhone] = useState("");
@@ -9,6 +10,7 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const navigate = useNavigate();
+  const dark = useSelector((state) => state.theme.dark);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -74,10 +76,16 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className={`min-h-screen flex flex-col ${dark ? "bg-gray-900" : ""}`}>
       <Navbar />
-      <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 px-4">
-        <div className="w-full max-w-md">
+      <div
+        className={`flex-1 flex items-center justify-center px-4 ${
+          dark
+            ? "bg-gradient-to-br from-gray-900 via-blue-950 to-indigo-900"
+            : "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
+        }`}
+      >
+        <div className={`w-full max-w-md ${dark ? "" : ""}`}>
           {/* Greeting Card */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full shadow-lg mb-4">
@@ -95,14 +103,24 @@ const LoginPage = () => {
                 />
               </svg>
             </div>
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">
+            <h1
+              className={`text-3xl font-bold mb-2 ${
+                dark ? "text-white" : "text-gray-800"
+              }`}
+            >
               Welcome Back
             </h1>
-            <p className="text-gray-600">Sign in to access your account</p>
+            <p className={dark ? "text-gray-200" : "text-gray-600"}>
+              Sign in to access your account
+            </p>
           </div>
 
           {/* Login Form */}
-          <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+          <div
+            className={`rounded-2xl shadow-2xl border overflow-hidden ${
+              dark ? "bg-gray-900 border-blue-900" : "bg-white border-gray-100"
+            }`}
+          >
             {/* Header */}
             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-6">
               <div className="flex items-center justify-between">
@@ -139,14 +157,18 @@ const LoginPage = () => {
                 <div>
                   <label
                     htmlFor="phone"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
+                    className={`block text-sm font-semibold mb-2 ${
+                      dark ? "text-gray-200" : "text-gray-700"
+                    }`}
                   >
                     Mobile Number
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <svg
-                        className="w-5 h-5 text-gray-400"
+                        className={`w-5 h-5 ${
+                          dark ? "text-gray-400" : "text-gray-400"
+                        }`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -169,6 +191,8 @@ const LoginPage = () => {
                       className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all duration-200 ${
                         error
                           ? "border-red-300 focus:ring-red-500 bg-red-50"
+                          : dark
+                          ? "border-blue-900 bg-gray-800 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
                           : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                       }`}
                       placeholder="e.g., +1234567890"
@@ -200,7 +224,7 @@ const LoginPage = () => {
                 <button
                   onClick={handleLogin}
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  className={`w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:-translate-y-0.5`}
                 >
                   {loading ? (
                     <div className="flex items-center justify-center">
@@ -248,8 +272,16 @@ const LoginPage = () => {
               </div>
 
               {/* Footer */}
-              <div className="mt-8 pt-6 border-t border-gray-100">
-                <div className="flex items-center justify-center text-sm text-gray-500">
+              <div
+                className={`mt-8 pt-6 border-t ${
+                  dark ? "border-blue-900" : "border-gray-100"
+                }`}
+              >
+                <div
+                  className={`flex items-center justify-center text-sm ${
+                    dark ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
                   <svg
                     className="w-4 h-4 mr-1"
                     fill="none"
@@ -271,7 +303,11 @@ const LoginPage = () => {
 
           {/* Additional Info */}
           <div className="mt-6 text-center">
-            <p className="text-gray-500 text-sm">
+            <p
+              className={
+                dark ? "text-gray-400 text-sm" : "text-gray-500 text-sm"
+              }
+            >
               Need help? Contact our{" "}
               <a
                 href="#"
