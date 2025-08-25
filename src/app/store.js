@@ -1,6 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { postReducer } from "../features/postSlice";
+import { postReducer, themeReducer } from "../features/postSlice";
 
 export const store = configureStore({
-  reducer: postReducer,
+  reducer: {
+    posts: postReducer,
+    theme: themeReducer,
+  },
 });

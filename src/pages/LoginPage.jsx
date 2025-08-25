@@ -173,7 +173,7 @@ const LoginPage = () => {
                         ? "border-red-300 focus:ring-red-500 bg-red-50"
                         : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                     }`}
-                    placeholder="e.g., +1234567890, +254712345678"
+                    placeholder="e.g., +1234567890"
                     disabled={loading}
                     autoComplete="tel"
                   />
