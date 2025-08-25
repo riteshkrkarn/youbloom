@@ -10,6 +10,16 @@ A technical interview project: a responsive blog platform built with React, Redu
 - **Theme toggle**: Switch between dark and light mode (state managed by Redux).
 - **Navigation**: React Router for page navigation, including back button and search-based navigation.
 
+## Testing
+
+- **Unit tests** are written using [Vitest](https://vitest.dev/).
+- Tests cover phone number validation logic and Redux reducers (theme and post selection).
+- Test files are located in `src/__tests__` and utility files in `src/utility`.
+- To run tests:
+  ```bash
+  npm run test
+  ```
+
 ## Tech Stack & Architecture
 
 - **React**: Functional components and hooks for UI and state logic.
@@ -17,6 +27,7 @@ A technical interview project: a responsive blog platform built with React, Redu
 - **React Router DOM**: Handles routing between login, posts list, and post detail pages.
 - **Tailwind CSS**: Utility-first CSS for responsive and modern UI.
 - **Vite**: Fast build tool and dev server.
+- **Vitest**: Unit testing framework for logic and reducers.
 
 ## File Structure
 
@@ -26,6 +37,8 @@ src/
   components/    # Reusable UI components (Navbar, PostsCard, etc.)
   features/      # Redux slices (postSlice.js)
   pages/         # Page components (LoginPage, PostsListMainPage, PostDetailPage)
+  utility/       # Utility functions (e.g., validatePhone)
+  __tests__/     # Unit and integration tests (e.g., LoginTheme.test.js)
   App.jsx        # Main app and routes
   index.js(x)    # Entry point
 ```

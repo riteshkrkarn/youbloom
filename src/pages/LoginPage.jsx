@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { validatePhone } from "../utility/utilities";
+
+
 
 const LoginPage = () => {
   const [phone, setPhone] = useState("");
@@ -7,14 +10,6 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const navigate = useNavigate();
-
-  const validatePhone = (value) => {
-    if (!value) return "Phone number is required";
-    if (!/^\+\d{1,4}\d{6,14}$/.test(value)) {
-      return "Please enter a valid phone number starting with country code (e.g., +1, +44, +254)";
-    }
-    return "";
-  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
